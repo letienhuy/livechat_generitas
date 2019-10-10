@@ -1,0 +1,5 @@
+{
+  "name": "livechat-echo-server",
+  "script": "laravel-echo-server",
+  "args": "start"
+}

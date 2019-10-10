@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?3sbyng');
+  src:  url('../fonts/icomoon.eot?3sbyng#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?3sbyng') format('truetype'),
+    url('../fonts/icomoon.woff?3sbyng') format('woff'),
+    url('../fonts/icomoon.svg?3sbyng#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-icon-address:before {
+  content: "\e900";
+}
+.icon-icon-broadcast:before {
+  content: "\e901";
+}
+.icon-icon-clock:before {
+  content: "\e902";
+}
+.icon-icon-answer:before {
+  content: "\e903";
+}
+.icon-icon-card:before {
+  content: "\e904";
+}
+.icon-icon-dauvao:before {
+  content: "\e905";
+}
+.icon-icon-dong:before {
+  content: "\e906";
+}
+.icon-icon-flows:before {
+  content: "\e907";
+}
+.icon-icon-image:before {
+  content: "\e908";
+}
+.icon-icon-list:before {
+  content: "\e909";
+}
+.icon-icon-music:before {
+  content: "\e90a";
+}
+.icon-icon-plus:before {
+  content: "\e90b";
+}
+.icon-icon-return:before {
+  content: "\e90c";
+}
+.icon-icon-search:before {
+  content: "\e90d";
+}
+.icon-icon-tep:before {
+  content: "\e90e";
+}
+.icon-icon-trihoan:before {
+  content: "\e90f";
+}
+.icon-icon-waring:before {
+  content: "\e910";
+}
+.icon-icon-chat:before {
+  content: "\e911";
+}
+.icon-icon-check:before {
+  content: "\e912";
+}
+.icon-icon-cskh:before {
+  content: "\e913";
+}
+.icon-icon-messenger:before {
+  content: "\e914";
+}
+.icon-icon-note:before {
+  content: "\e915";
+}
+.icon-icon-save:before {
+  content: "\e916";
+}
+.icon-icon-setting:before {
+  content: "\e917";
+}
+.icon-icon-trash:before {
+  content: "\e918";
+}
+.icon-icon-user:before {
+  content: "\e919";
+}
+.icon-icon-vanban:before {
+  content: "\e91a";
+}
+.icon-icon-library:before {
+  content: "\e91b";
+}
+.icon-icon-play:before {
+  content: "\e91c";
+}
+.icon-icon-report:before {
+  content: "\e91d";
+}
+.icon-icon-telephone:before {
+  content: "\e91e";
+}
+.icon-icon-user2:before {
+  content: "\e91f";
+}

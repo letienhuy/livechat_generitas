@@ -1,0 +1,2148 @@
+@import "_variables";
+@import "_mixin";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700');
+html,
+body{
+    height: 100%;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+#root{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: $secondColor;
+}
+* {
+    box-sizing: border-box;
+    outline: 0 !important;
+}
+header{
+    height: 70px;
+    background: $primaryColor;
+    .header{
+        width: 100%;
+        height: 100%;
+        max-width: 1280px;
+        position: relative;
+        display: flex;
+        margin: 0 auto;
+        &-collapse{
+            flex-grow: 1;
+            height: 100%;
+            .header-pull-right{
+                float: right;
+            }
+        }
+        &-toggler{
+            display: block;
+            width: 18px;
+            height: 18px;
+            padding: 0;
+            color: #ffffff;
+            background: transparent;
+            border: 0;
+            line-height: 18px;
+            margin: 26px 0;
+        }
+        &-btn-icon{
+            position: relative;
+            width: 18px;
+            height: 18px;
+            font-size: 18px;
+            line-height: 18px;
+            border: 0;
+            margin: 26px 5px;
+            padding: 0;
+            background: transparent;
+            color: #ffffff;
+        }
+        &-btn-icon_unread{
+            &:after{
+                position: absolute;
+                content: attr(unread);
+                font-size: 10px;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                background-color: #f00;
+                text-align: center;
+                line-height: 15px;
+                right: -8px;
+                top: -8px;
+            }
+        }
+    }
+}
+#body{
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    #container{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        padding: 10px 0;
+        // #region Sidebar
+        #sidebar{
+            position: relative;
+            min-width: 270px;
+            background-color: #fff;
+            border-bottom: 2px solid $primaryColor;
+            margin-right: 20px;
+            a{
+                text-decoration: none;
+            }
+            .logo{
+                position: absolute;
+                height: 160px;
+                top: 0;
+                right: 0;
+                left: 0;
+                &-border{
+                    display: block;
+                    width: 120px;
+                    height: 120px;
+                    border: 2px solid $primaryColor;
+                    border-radius: 50%;
+                    margin: 20px auto;
+                    img{
+                        display: block;
+                        width: 56px;
+                        height: 94px;
+                        margin: 11px auto;
+                    }
+                }
+            }
+            .sidebar{
+                &-bot{
+                    position: absolute;
+                    height: 60px;
+                    top: 160px;
+                    left: 0;
+                    right: 0;
+                    border: 1px solid #ddd;
+                    border-left: 0;
+                    border-right: 0;
+                    cursor: pointer;
+                    &_picture{
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                        }
+                        position: relative;
+                        width: 40px;
+                        height: 40px;
+                        border: 1px solid #dddddd;
+                        margin: 10px 20px;
+                        border-radius: 50%;
+                    }
+                    &-caret{
+                        position: absolute;
+                        top: 0;
+                        right: 20px;
+                        font-size: 16px;
+                        line-height: 20px;
+                        margin: 20px 0;
+                        &:after{
+                            content: '\f105';
+                            font-family: FontAweSome;
+                        }
+                    }
+                    p{
+                        display: block;
+                        font-size: 15px;
+                        padding: 20px 0;
+                        line-height: 20px;
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin: 0 20px 0 85px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                    &.bot-selected{
+                        .sidebar-bot-caret{
+                            &:after{
+                                content: '\f107';
+                            }
+                        }
+                    }
+                    &:hover{
+                        background: $secondColor;
+                    }
+                }
+                &-bot-menu{
+                    position: absolute;
+                    display: none;
+                    top: 220px;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: #fff;
+                    z-index: 9;
+                    .sidebar-bot-item{
+                        position: relative;
+                        height: 50px;
+                        cursor: pointer;
+                        border-bottom: 1px dotted #ddd;
+                        &_picture{
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                            }
+                            width: 30px;
+                            height: 30px;
+                            border: 1px solid #dddddd;
+                            margin: 10px 25px;
+                            border-radius: 50%;
+                        }
+                        p{
+                            display: block;
+                            font-size: 15px;
+                            padding: 15px 0;
+                            line-height: 20px;
+                            margin: 0 10px 0 85px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                        &:hover{
+                            background: $secondColor;
+                        }
+                    }
+                    .sidebar-bot-item:last-child{
+                        border-bottom: 1px solid #ddd;
+                        .sidebar-bot-item_picture{
+                            text-align: center;
+                            line-height: 30px;
+                            color: #ccc;
+                        }
+                    }
+                    &.bot-menu-opened{
+                        display: block;
+                        animation: opened .2s 1 linear;
+                    }
+                }
+                &-list{
+                    position: absolute;
+                    top: 230px;
+                    bottom: 40px;
+                    left: 0;
+                    right: 0;
+                    z-index: 8;
+                    &-item{
+                        position: relative;
+                        height: 50px;
+                        padding: 0 20px;
+                        cursor: pointer;
+                        .sidebar-icon{
+                            position: absolute;
+                            top: 0;
+                            left: 20px;
+                            font-size: 20px;
+                            line-height: 20px;
+                            margin: 15px 0;
+                            color: #a3a3a3;
+                        }
+                        .sidebar-caret{
+                            position: absolute;
+                            top: 0;
+                            right: 20px;
+                            font-size: 16px;
+                            line-height: 20px;
+                            margin: 15px 0;
+                            &:after{
+                                content: '\f105';
+                                font-family: FontAweSome;
+                            }
+                        }
+                        p{
+                            display: block;
+                            font-size: 15px;
+                            padding: 15px 0;
+                            line-height: 20px;
+                            margin: 0 20px 0 36px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            color: #000000;
+                        }
+                        &:hover{
+                            background-color: $secondColor;
+                            color: $primaryColor;
+                            p{
+                                color: $primaryColor;
+                            }
+                            .sidebar-icon{
+                                color: $primaryColor;
+                            }
+                        }
+                        &.logout{
+                            position: absolute;
+                            width: 100%;
+                            height: 40px;
+                            left: 0;
+                            bottom: 0;
+                            p{
+                                padding: 10px 0;
+                            }
+                            .sidebar-icon{
+                                margin: 10px 0;
+                                color: #f00;
+                            }
+                        }
+                    }
+                    .item-selected{
+                        @extend .sidebar-list-item:hover;
+                        .sidebar-caret{
+                            &:after{
+                                content: '\f107';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // #endregion
+        #content{
+            position: relative;
+            z-index: 9;
+            flex-grow: 1;
+            .content{
+                position: relative;
+                width: 100%;
+                height: 100%;
+                .cnt-head{
+                    height: 50px;
+                    &-title{
+                        font-size: 20px;
+                    }
+                    .breadcrumb{
+                        all: unset;
+                        list-style: none;
+                        &-item{
+                            display: inline-block;
+                            font-size: 14px;
+                            color: $primaryColor;
+                            padding: 0;
+                            a{
+                                color: #666666;
+                                &:hover{
+                                    color: $primaryColor;
+                                }
+                            }
+                            &:before{
+                                padding: 0;
+                                margin: 0px 5px;
+                            }
+                        }
+                    }
+                }
+                .cnt-main{
+                    position: absolute;
+                    top: 50px;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    display: flex;
+                    background: #fff;
+                    border-bottom: 2px solid $primaryColor;
+                    // #region Chat
+                    .chat{
+                        position: relative;
+                        min-width: 270px;
+                        padding: 0 20px;
+                        border-right: 1px solid $secondColor;
+                        &-head{
+                            height: 65px;
+                            border-bottom: 1px solid $secondColor;
+                        }
+                        &-list{
+                            position: absolute;
+                            top: 65px;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            margin: 20px 0;
+                            padding: 0 20px;
+                            .chat-item{
+                                position: relative;
+                                height: 50px;
+                                cursor: pointer;
+                                &_checkbox{
+                                    margin: 15px 10px;
+                                }
+                                &_picture{
+                                    img{
+                                        width: 100%;
+                                        height: 100%;
+                                        border-radius: 50%;
+                                    }
+                                    width: 30px;
+                                    height: 30px;
+                                    border: 1px solid #ccc;
+                                    margin: 10px;
+                                    margin-left: 0;
+                                    border-radius: 50%;
+                                }
+                                &_name{
+                                    display: block;
+                                    margin: 0 20px 0 70px;
+                                    padding: 15px 0;
+                                    line-height: 20px;
+                                    font-size: 15px;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                }
+                                &:hover{
+                                    background: $secondColor;
+                                    .cs-checkbox_check{
+                                        display: block;
+                                    }
+                                }
+                                &.item-selected{
+                                    background: $secondColor;
+                                }
+                                &.has-people{
+                                    &::before{
+                                        content: '';
+                                        position: absolute;
+                                        width: 6px;
+                                        height: 6px;
+                                        background: #13ce66;
+                                        border-radius: 50%;
+                                        top: 22px;
+                                        right: 7px;
+                                    }
+                                }
+                                &.unread{
+                                    .chat-item_name{
+                                        font-weight: bold;
+                                    }
+                                }
+                            }
+                        }
+                        &-select-box{
+                            height: 20px;
+                            font-size: 12px;
+                            margin: 25px 0 20px 0;
+                        }
+                    }
+                    .message{
+                        position: relative;
+                        flex-grow: 1;
+                        min-width: 320px;
+                        &-box{
+                            position: absolute;
+                            padding: 0 20px;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            overflow: hidden;
+                        }
+                        &-head{
+                            @extend .chat-head;
+                            &_picture{
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                    border-radius: 50%;
+                                }
+                                width: 30px;
+                                height: 30px;
+                                border: 1px solid #ccc;
+                                margin: 10px;
+                                margin-left: 0;
+                                border-radius: 50%;
+                                margin: 19px 0 16px 0;
+                            }
+                            &_name{
+                                display: block;
+                                padding-top: 19px;
+                                text-align: center;
+                                line-height: 20px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                        &-bot{
+                            width: 100%;
+                            height: 36px;
+                            text-align: center;
+                            span{
+                                font-size: 12px;
+                            }
+                            &-btn{
+                                position: relative;
+                                border: 0;
+                                margin-top: 5px;
+                                width: 26px;
+                                height: 26px;
+                                border-radius: 50%;
+                                background: $primaryColor;
+                                color: #ffffff;
+                                &::before{
+                                    content: '\e91c';
+                                    position: absolute;
+                                    width: 100%;
+                                    height: 100%;
+                                    top: -1px;
+                                    right: -1px;
+                                    text-align: center;
+                                    line-height: 26px;
+                                    font-family: "icomoon";
+                                }
+                                &.pause{
+                                    &::before{
+                                        content: '\f04c';
+                                        font-family: FontAweSome;
+                                        font-size: 12px;
+                                        top: 0;
+                                        right: 0;
+                                    }
+                                }
+                            }
+                        }
+                        &-list{
+                            position: absolute;
+                            top: 65px;
+                            bottom: 0;
+                            right: 0;
+                            left: 0;
+                            padding: 0 20px;
+                            margin-top: 36px;
+                            margin-bottom: 46px;
+                            .scrollarea-content{
+                                padding: 5px;
+                            }
+                            .message-item{
+                                margin: 5px 0;
+                                &_time{
+                                    display: block;
+                                    font-size: 11px;
+                                    text-align: center;
+                                    color: #cccccc;
+                                }
+                                &_picture{
+                                    img{
+                                        width: 100%;
+                                        height: 100%;
+                                        border-radius: 50%;
+                                    }
+                                    @extend .message-head_picture;
+                                    margin: 0;
+                                    float: left;
+                                }
+                                &_content{
+                                    display: block;
+                                    min-height: 30px;
+                                    font-size: 14px;
+                                    margin-left: 35px;
+                                    word-break: break-all;
+                                    .message-item_text{
+                                        display: inline-block;
+                                        min-height: 30px;
+                                        line-height: 20px;
+                                        padding: 5px;
+                                        border-radius: 5px;
+                                        background-color: #dddddd;
+                                    }
+                                    ul{
+                                        margin: 0;
+                                        padding: 0;
+                                        list-style: none;
+                                        li{
+                                            width: 200px;
+                                            margin-bottom: 5px;
+                                            cursor: pointer;
+                                            img{
+                                                width: 100%;
+                                                border-radius: 10px;
+                                            }
+                                        }
+                                    }
+                                    .message-attachment{
+                                        width: 100%;
+                                        border-radius: 10px;
+                                        box-shadow: #ccc 0 0 4px;
+                                        margin: 5px 0;
+                                        &_head{
+                                            display: block;
+                                            border-radius: 10px 10px 0 0;
+                                            padding: 10px 5px;
+                                            text-align: left;
+                                            border-bottom: 1px solid #ddd;
+                                            font-weight: bold;
+                                        }
+                                        &_cnt{
+                                            button{
+                                                display: block;
+                                                width: 100%;
+                                                padding: 10px;
+                                                border: 0;
+                                                border-bottom: 1px solid #ddd;
+                                                background-color: #fff;
+                                                color: blue;
+                                            }
+                                            button:last-child{
+                                                border-radius: 0 0 10px 10px;
+                                                border-bottom: 0;
+                                            }
+                                        }
+                                    }
+                                }
+                                &.reply{
+                                    .message-item_picture{
+                                        float: right;
+                                    }
+                                    .message-item_content{
+                                        margin: 0;
+                                        margin-right: 35px;
+                                        text-align: right;
+                                        .message-item_text{
+                                            text-align: left;
+                                            background-color: $secondColor;
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                        &-input{
+                            position: absolute;
+                            height: 46px;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            margin: 0 20px;
+                            border-top: 1px solid $secondColor;
+                            .input{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 25px;
+                                bottom: 0;
+                                input{
+                                    width: 100%;
+                                    height: 100%;
+                                    border: 0;
+                                    font-size: 14px;
+                                    &::placeholder{
+                                        color: #ccc;
+                                    }
+                                }
+                            }
+                            button{
+                                width: 20px;
+                                height: 46px;
+                                padding: 0;
+                                border: 0;
+                                background-color: transparent;
+                                text-align: center;
+                                color: $primaryColor;
+                            }
+
+                        }
+                    }
+                    .user-info{
+                        position: relative;
+                        min-width: 270px;
+                        padding: 0 10px;
+                        border-left: 1px solid $secondColor;
+                        &-head{
+                            @extend .chat-head;
+                            padding-top: 20px;
+                            text-align: center;
+                        }
+                        &-list{
+                            position: absolute;
+                            top: 65px;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            padding: 0px 10px;
+                            .user-info-item{
+                                display: block;
+                                padding: 15px 0;
+                                border-bottom: 1px solid $secondColor;
+                                p{
+                                    display: block;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    margin: 0;
+                                    margin-left: 35px;
+                                }
+                            }
+                            .user-info-icon{
+                                float: left;
+                                width: 15px;
+                                height: 16px;
+                                color: #cccccc;
+                                margin: auto 10px;
+                            }
+                        }
+                    }
+                    // #endregion
+                    // #region Report
+                    .report{
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        right: 0;
+                        left: 0;
+                        &-head{
+                            width: 100%;
+                            height: 50px;
+                            font-size: 14px;
+                            .report-filter{
+                                span{
+                                    margin: 0 5px;
+                                    float: left;
+                                    line-height: 30px;
+                                }
+                                .btn-filter{
+                                    height: 30px;
+                                    border: 0;
+                                    border-radius: 4px;
+                                    background-color: $primaryColor;
+                                    color: #ffffff;
+                                    margin: 0 5px;
+                                }
+                                .select-date{
+                                    float: left;
+                                }
+                                .input-date{
+                                    width: 100%;
+                                    border: 1px solid $primaryColor;
+                                    padding: 5px;
+                                    line-height: 20px;
+                                    border-radius: 4px;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                        &-body{
+                            position: absolute;
+                            top: 50px;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                        }
+                    }
+                    //#endregion
+                    // #region Broadcast
+                    .broadcast{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        &-head{
+                            width: 100%;
+                            height: 50px;
+                            border-bottom: 1px solid #ddd;
+                            &_breadcrum{
+                                height: 30px;
+                                float: left;
+                                line-height: 30px;
+                                i{
+                                    color: $primaryColor;
+                                }
+                                span{
+                                    display: inline-block;
+                                    height: 30px;
+                                    margin-right: 5px;
+                                }
+                                .flow-name{
+                                    max-width: 300px;
+                                    border: 1px solid transparent;
+                                    border-radius: 5px;
+                                    padding: 5px;
+                                    line-height: 18px;
+                                    font-weight: bold;
+                                    &:focus{
+                                        border-color: $primaryColor;
+                                    }
+                                }
+                            }
+                        }
+                        &-sending{
+                            position: absolute;
+                            top: 50px;
+                            right: 0;
+                            left: 0;
+                            bottom: 0;
+                            .status{
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                text-align: center;
+                                p{
+                                    font-size: 20px;
+                                    color: rgb(65, 200, 20);
+                                    i{
+                                        font-size: 30px;
+                                    }
+                                }
+                                button{
+                                    padding: 5px 20px;
+                                    border: 1px solid #ddd;
+                                    border-radius: 5px;
+                                    background-color: #fff;
+                                    &:hover{
+                                        border-color: $primaryColor;
+                                    }
+                                }
+                            }
+                        }
+                        &-history{
+                            &-info{
+                                margin: 0;
+                                padding: 0;
+                                li{
+                                    list-style: none;
+                                    span{
+                                        display: block;
+                                        line-height: 30px;
+                                        color: #555555;
+                                        i{
+                                            width: 30px;
+                                            height: 30px;
+                                            text-align: center;
+                                            line-height: 30px;
+                                            font-size: 20px;
+                                            color: $primaryColor;
+                                        }
+                                    }
+                                    span:first-child{
+                                        margin-left: 30px;
+                                        color: #000;
+                                        font-weight: bold;
+                                    }
+                                }
+                            }
+                        }
+                        &-body{
+                            position: absolute;
+                            top: 50px;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            font-size: 14px;
+                            .broadcast-list{
+                                padding: 10px 20px;
+                                cursor: pointer;
+                                &_item{
+                                    width: 100%;
+                                    border: 1px solid $secondColor;
+                                    thead{
+                                        background: $primaryColor;
+                                        color: #ffffff;
+                                        text-align: center;
+                                        border: 1px solid $primaryColor;
+                                        th{
+                                            padding: 5px;
+                                        }
+                                    }
+                                    tbody{
+                                        text-align: center;
+                                        td{
+                                            padding: 5px;
+                                        }
+                                        tr{
+                                            border-bottom: 1px solid $secondColor;
+                                            &:hover{
+                                                background-color: $secondColor;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .broadcast-btn{
+                                border: 0;
+                                background-color: transparent;
+                                font-size: 15px;
+                                &.remove{
+                                    color: #ff0000;
+                                }
+                            }
+                            .broadcast-editor{
+                                display: flex;
+                                min-width: 100%;
+                                min-height: 100%;
+                                .block{
+                                    &-step{
+                                        flex-grow: 1;
+                                        min-width: 300px;
+                                        &-body{
+                                            display: block;
+                                            max-width: 300px;
+                                            margin: 0 auto;
+                                        }
+                                        &-list{
+                                            .block-step-item{
+                                                padding-right: 60px;
+                                                .block-step-btn.edit{
+                                                    right: 20px;
+                                                }
+                                            }
+                                        }
+                                        &-item{
+                                            position: relative;
+                                            height: 40px;
+                                            width: 100%;
+                                            padding: 5px 10px;
+                                            padding-right: 30px;
+                                            margin: 10px 0;
+                                            line-height: 20px;
+                                            border-radius: 5px;
+                                            border: 1px solid $primaryColor;
+                                            cursor: pointer;
+                                            &.selected{
+                                                background: $primaryColor;
+                                                color: #ffffff;
+                                                input:disabled{
+                                                    background-color: $primaryColor;
+                                                    color: #ffffff;
+                                                }
+                                                .block-step-btn{
+                                                    color: #ffffff;
+                                                }
+                                            }
+                                            &:hover{
+                                                .block-step-btn{
+                                                    display: block;
+                                                }
+                                            }
+                                            span{
+                                                display: block;
+                                                line-height: 30px;
+                                            }
+                                            input{
+                                                width: 100%;
+                                                height: 100%;
+                                                line-height: 25px;
+                                                padding: 2.5px 5px;
+                                                border: 1px solid $primaryColor;
+                                            }
+                                            input:disabled{
+                                                background-color: #fff;
+                                                color: #000000;
+                                                border: 0;
+                                            }
+                                            .block-step-input{
+                                                position: absolute;
+                                                top: 0;
+                                                left: 0;
+                                                bottom: 0;
+                                                right: 0;
+                                            }
+                                            .block-step-btn{
+                                                position: absolute;
+                                                display: none;
+                                                width: 30px;
+                                                height: 20px;
+                                                margin: 10px 0;
+                                                border: 0;
+                                                padding: 0;
+                                                top: 0;
+                                                right: 0;
+                                                background-color: transparent;
+                                                &.edit, &.delete{
+                                                    &:after{
+                                                        content: '\f044';
+                                                        font-family: FontAweSome;
+                                                        position: absolute;
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        top: 0;
+                                                        left: 0;
+                                                        font-size: 15px;
+                                                        line-height: 20px;
+                                                        text-align: center;
+                                                    }
+                                                }
+                                                &.delete::after{
+                                                    content: '\f1f8';
+                                                    line-height: 18px;
+                                                    color: rgb(240, 32, 32);
+                                                }
+                                            }
+                                        }
+                                        &-create{
+                                            margin-top: 20px;
+                                            padding: 10px 20px;
+                                            .block-step-btn{
+                                                height: 30px;
+                                                width: 100%;
+                                                border-radius: 15px;
+                                                background-color: transparent;
+                                                border: 1px dashed #aaa;
+                                                &:hover{
+                                                    border-color: $primaryColor;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &-editor{
+                                        flex: 0 0 380px;
+                                        max-width: 380px;
+                                        height: auto;
+                                        min-height: 100%;
+                                        box-shadow: #ddd 0 0 5px;
+                                        .editor{
+                                            &-head{
+                                                position: relative;
+                                                width: 100%;
+                                                height: 50px;
+                                                background-color: #ddd;
+                                                padding: 10px 30px;
+                                                line-height: 30px;
+                                                font-size: 25px;
+                                                text-align: center;
+                                                white-space: nowrap;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                .back{
+                                                    position: absolute;
+                                                    width: 30px;
+                                                    height: 50px;
+                                                    border: 0;
+                                                    top: 0;
+                                                    left: 0;
+                                                    background-color: #ddd;
+                                                    cursor: pointer;
+                                                    &:after{
+                                                        content: '\f104';
+                                                        font-family: FontAweSome;
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        font-size: 30px;
+                                                        line-height: 50px;
+                                                    }
+                                                    &:hover{
+                                                        background-color: #eee;
+                                                    }
+                                                }
+                                            }
+                                            &-body{
+                                                position: relative;
+                                                width: 100%;
+                                                .editor-element{
+                                                    padding: 10px 0;
+                                                    .element-block{
+                                                        position: relative;
+                                                        margin: 10px 0;
+                                                        padding: 0 30px;
+                                                        &-delete, &-clone{
+                                                            position: absolute;
+                                                            display: none;
+                                                            width: 30px;
+                                                            height: 30px;
+                                                            top: 0;
+                                                            right: 0;
+                                                            border: 0;
+                                                            background: transparent;
+                                                            color: #cccccc;
+                                                            font-size: 20px;
+                                                            line-height: 30px;
+                                                            padding: 0;
+                                                        }
+                                                        &-clone{
+                                                            top: 30px;
+                                                        }
+                                                        &-text{
+                                                            border-radius: 20px 20px 0 0;
+                                                            background-color: rgb(240, 240, 240);
+                                                            border: 2px solid rgb(240, 240, 240);
+                                                            padding: 10px;
+                                                            &:hover{
+                                                                border-color: $primaryColor;
+                                                            }
+                                                            &.focus{
+                                                                border-color: rgb(0, 180, 9) !important;
+                                                            }
+                                                            span{
+                                                                display: block;
+                                                                min-height: 31px;
+                                                                padding: 5px;
+                                                                word-wrap: break-word;
+                                                            }
+                                                            &.bottom{
+                                                                padding: 0 10px;
+                                                                border-radius: 20px;
+                                                            }
+                                                        }
+                                                        &-keyboard{
+                                                            .block-keyboard{
+                                                                position: relative;
+                                                                text-align: center;
+                                                                padding-right: 60px;
+                                                                line-height: 20px;
+                                                                border: 2px solid #ddd;
+                                                                border-top-color: transparent;
+                                                                min-height: 44px;
+                                                                cursor: pointer;
+                                                                &:hover{
+                                                                    border-color: $primaryColor !important;
+                                                                    border-top-color: $primaryColor !important;
+                                                                    .block-keyboard_connect{
+                                                                        border-left-color: $primaryColor;
+                                                                        &.connected{
+                                                                            &:after{
+                                                                                color: $primaryColor;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                                span{
+                                                                    display: block;
+                                                                    padding: 10px;
+                                                                    white-space: nowrap;
+                                                                    overflow: hidden;
+                                                                    text-overflow: ellipsis;
+                                                                }
+                                                                .block-keyboard_connect{
+                                                                    position: absolute;
+                                                                    width: 60px;
+                                                                    height: 100%;
+                                                                    top: 0;
+                                                                    right: 0;
+                                                                    border-left: 1px solid #eee;
+                                                                    cursor: pointer;
+                                                                    &::after{
+                                                                        content: '\f10c';
+                                                                        position: absolute;
+                                                                        font-family: FontAweSome;
+                                                                        top: 50%;
+                                                                        left: 50%;
+                                                                        transform: translate(-50%, -50%);
+                                                                        color: rgba(255, 0, 0, 0.445);
+                                                                    }
+                                                                    &.connected{
+                                                                        &::after{
+                                                                            content: '\f105';
+                                                                            color: #ddd;
+                                                                            font-size: 25px;
+                                                                        }
+                                                                        &:hover{
+                                                                            background: $primaryColor;
+                                                                            &:after{
+                                                                                color: #ffffff;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                                &.selected{
+                                                                    border-style: solid;
+                                                                    border-color: rgb(65, 200, 20) !important;
+                                                                    &:hover{
+                                                                        .block-keyboard_connect{
+                                                                            border-left-color: #eee;
+                                                                            &.connected{
+                                                                                &:after{
+                                                                                    color: #ddd;
+                                                                                }
+                                                                                &:hover{
+                                                                                    background: rgb(65, 200, 20);
+                                                                                    &:after{
+                                                                                        color: #ffffff;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            .block-keyboard:first-child{
+                                                                border-top-color: #ddd;
+                                                            }
+                                                            .block-keyboard:last-child{
+                                                                border-radius: 0 0 20px 20px !important;
+                                                                .connected{
+                                                                    border-radius: 0 0 15px 0;
+                                                                }
+                                                            }
+                                                        }
+                                                        &.element-block-editor{
+                                                            .block-keyboard{
+                                                                border-radius: 0;
+                                                                &.bottom{
+                                                                    padding: 10px;
+                                                                    border-radius: 0 0 20px 20px;
+                                                                    border: 2px dashed #d3d3d3;
+                                                                    border-top-color: transparent;
+                                                                    color: #aaa;
+                                                                    padding: 0;
+                                                                    cursor: pointer;
+                                                                    &:hover{
+                                                                        margin: 0;
+                                                                        border-color: $primaryColor;
+                                                                        color: $primaryColor;
+                                                                        border-top-color: $primaryColor;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        &:hover{
+                                                            .element-block-delete, .element-block-clone{
+                                                                display: block;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                .editor-action{
+                                                    padding: 10px;
+                                                    .quick-reply{
+                                                        display: block;
+                                                        height: 30px;
+                                                        width: 120px;
+                                                        margin: 10px auto;
+                                                        padding: 5px 10px;
+                                                        border-radius: 20px;
+                                                        line-height: 18px;
+                                                        color: #aaaaaa;
+                                                        text-align: center;
+                                                        border: 1px dashed #ddd;
+                                                        cursor: pointer;
+                                                        &:hover{
+                                                            border-color: $primaryColor;
+                                                            color: $primaryColor;
+                                                        }
+                                                    }
+                                                    ul{
+                                                        margin: 0;
+                                                        padding: 0;
+                                                        list-style: none;
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        flex-wrap: wrap;
+                                                        justify-content: center;
+                                                        .editor-action-btn{
+                                                            min-width: 100px;
+                                                            border-radius: 10px;
+                                                            margin: 8px;
+                                                            padding: 10px;
+                                                            text-align: center;
+                                                            border: 2px dashed #ddd;
+                                                            color: #aaaaaa;
+                                                            cursor: pointer;
+                                                            i{
+                                                                display: block;
+                                                                font-size: 25px;
+                                                                margin-bottom: 5px;
+                                                            }
+                                                            &:hover{
+                                                                border-color: $primaryColor;
+                                                                color: $primaryColor;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                .editor-keyboard-action{
+                                                    position: absolute;
+                                                    display: none;
+                                                    width: 250px;
+                                                    height: 400px;
+                                                    top: 10px;
+                                                    right: -230px;
+                                                    background-color: #fff;
+                                                    box-shadow: #ddd 0 0 3px;
+                                                    z-index: 9;
+                                                    padding: 10px;
+                                                    padding-bottom: 35px;
+                                                    &_editor{
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        padding: 5px;
+                                                        input{
+                                                            display: block;
+                                                            height: 40px;
+                                                            width: 100%;
+                                                            padding: 5px 10px;
+                                                            border-radius: 4px;
+                                                            border: 1px solid #ddd;
+                                                        }
+                                                        span{
+                                                            display: block;
+                                                            text-align: center;
+                                                        }
+                                                        .keyboard-action{
+                                                            position: relative;
+                                                            padding: 10px;
+                                                            margin: 10px 0;
+                                                            padding-right: 50px;
+                                                            border-radius: 10px;
+                                                            border: 2px solid #ccc;
+                                                            background-color: #ddd;
+                                                            white-space: nowrap;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            text-align: center;
+                                                            & > span{
+                                                                position: absolute;
+                                                                width: 40px;
+                                                                top: 0;
+                                                                right: 0;
+                                                                border-radius: 0 10px 10px 0;
+                                                                border-left: 2px solid #ccc;
+                                                                line-height: 40px;
+                                                                font-size: 20px;
+                                                                cursor: pointer;
+                                                            }
+                                                            &-list{
+                                                                span{
+                                                                    margin: 10px 0;
+                                                                    padding: 10px 20px;
+                                                                    border-radius: 10px;
+                                                                    border: 2px dashed #6fb4ff;
+                                                                    cursor: pointer;
+                                                                    &:hover{
+                                                                        border-color: $primaryColor;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    .btn-delete{
+                                                        position: absolute;
+                                                        bottom: 5px;
+                                                        left: 5px;
+                                                        background: #f00;
+                                                        &:hover{
+                                                            background: rgb(214, 0, 0);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &-preview{
+                                        flex-grow: 1;
+                                        min-width: 300px;
+                                        .preview{
+                                            position: relative;
+                                            display: block;
+                                            width: 260px;
+                                            height: 480px;
+                                            margin: 50px auto;
+                                            border: 2px solid #ccc;
+                                            padding: 60px 10px;
+                                            border-radius: 35px;
+                                            .phone{
+                                                &-speaker{
+                                                    position: absolute;
+                                                    width: 50px;
+                                                    height: 4px;
+                                                    background-color: #ccc;
+                                                    border: 1px solid #ccc;
+                                                    border-radius: 5px;
+                                                    top: 27px;
+                                                    left: 105px;
+                                                }
+                                                &-circle{
+                                                    position: absolute;
+                                                    width: 12px;
+                                                    height: 12px;
+                                                    background-color: #ccc;
+                                                    border-radius: 50%;
+                                                    top: 24px;
+                                                    left: 88px;
+                                                }
+                                                &-monitor{
+                                                    position: relative;
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    border: 1px solid #ddd;
+                                                    border-radius: 5px;
+                                                    .monitor-head{
+                                                        width: 100%;
+                                                        height: 40px;
+                                                        display: flex;
+                                                        background-color: #eee;
+                                                        .back{
+                                                            position: relative;
+                                                            width: 70px;
+                                                            height: 100%;
+                                                            line-height: 40px;
+                                                            font-size: 14px;
+                                                            color: #007aff;
+                                                            padding-left: 20px;
+                                                            &:after{
+                                                                content: '\f104';
+                                                                position: absolute;
+                                                                font-family: FontAweSome;
+                                                                width: 20px;
+                                                                height: 40px;
+                                                                text-align: center;
+                                                                line-height: 35px;
+                                                                font-size: 30px;
+                                                                top: 0;
+                                                                left: 0;
+                                                            }
+                                                        }
+                                                        .name{
+                                                            flex-grow: 1;
+                                                            font-size: 11px;
+                                                            text-align: center;
+                                                            p{
+                                                                margin: 0;
+                                                                height: 28px;
+                                                                line-height: 28px;
+                                                            }
+                                                            small{
+                                                                display: block;
+                                                                height: 12px;
+                                                                font-size: 9px;
+                                                                line-height: 5px;
+                                                            }
+                                                        }
+                                                        .manage{
+                                                            width: 70px;
+                                                            height: 100%;
+                                                            line-height: 30px;
+                                                            padding: 5px;
+                                                            font-size: 14px;
+                                                            color: #007aff;
+                                                            text-align: right;
+                                                        }
+                                                    }
+                                                    .monitor-body{
+                                                        position: absolute;
+                                                        top: 40px;
+                                                        bottom: 0;
+                                                        left: 0;
+                                                        right: 0;
+                                                        font-size: 13px;
+                                                        &_list{
+                                                            position: absolute;
+                                                            width: 100%;
+                                                            height: 100%;
+                                                            padding: 10px 5px;
+                                                        }
+                                                        .msg-item{
+                                                            margin: 5px 0;
+                                                            animation: show-preview .2s 1;
+                                                            .avatar{
+                                                                width: 25px;
+                                                                height: 25px;
+                                                                background-color: #ddd;
+                                                                float: left;
+                                                                border-radius: 50%;
+                                                            }
+                                                            .msg-text{
+                                                                border-radius: 15px;
+                                                                margin-left: 30px;
+                                                                .caption{
+                                                                    padding: 5px 10px;
+                                                                    font-weight: bold;
+                                                                    border-radius: 15px 15px 0 0;
+                                                                    background-color: #ddd;
+                                                                    border: 1px solid #ddd;
+                                                                    word-wrap: break-word;
+                                                                    min-height: 30px;
+                                                                }
+                                                                .keyboard{
+                                                                    display: block;
+                                                                    text-align: center;
+                                                                    padding: 5px 10px;
+                                                                    white-space: nowrap;
+                                                                    overflow: hidden;
+                                                                    text-overflow: ellipsis;
+                                                                    border: 1px solid #ddd;
+                                                                    border-top: 0;
+                                                                    cursor: pointer;
+                                                                    color: #007aff;
+                                                                }
+                                                                div:last-child{
+                                                                    border-bottom-right-radius: 15px;
+                                                                    border-bottom-left-radius: 15px;
+                                                                }
+                                                            }
+                                                            &.reply{
+                                                                .avatar{
+                                                                    float: right;
+                                                                }
+                                                                .msg-text{
+                                                                    margin: 0;
+                                                                    margin-right: 30px;
+                                                                    text-align: right;
+                                                                    .caption{
+                                                                        display: inline-block;
+                                                                        font-weight: normal;
+                                                                        background-color: #007aff;
+                                                                        color: #ffffff;
+                                                                        border: 0;
+                                                                    }
+                                                                }
+                                                            }
+                                                            &.only-text{
+                                                                .msg-text{
+                                                                    .caption{
+                                                                        display: inline-block;
+                                                                        font-weight: normal;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                &-home{
+                                                    position: absolute;
+                                                    left: 110px;
+                                                    bottom: 10px;
+                                                    width: 40px;
+                                                    height: 40px;
+                                                    border-radius: 50%;
+                                                    border: 2px solid #ddd;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .broadcast-setting{
+                                .setting-item{
+                                    padding: 20px;
+                                    border-bottom: 1px solid #eee;
+                                    &.row{
+                                        margin: 0;
+                                    }
+                                    &_desc{
+                                        margin-left: 25px;
+                                        .filter-user{
+                                            padding: 2px;
+                                            border-bottom: 1px dashed green;
+                                            cursor: pointer;
+                                        }
+                                        &.gray{
+                                            color: #cccccc;
+                                        }
+                                    }
+                                    .input-schedule{
+                                        margin: 10px 0;
+                                        border: 1px solid #ccc;
+                                        border-radius: 4px;
+                                        padding: 5px 10px;
+                                        text-align: center;
+                                    }
+                                    .filter-menu, .search-menu{
+                                        position: fixed;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%);
+                                        min-width: 600px;
+                                        max-width: 800px;
+                                        height: 90%;
+                                        max-height: 90%;
+                                        background-color: #fff;
+                                        z-index: 10;
+                                        border-radius: 4px;
+                                        .filter-head{
+                                            position: relative;
+                                            height: 50px;
+                                            padding: 10px 40px;
+                                            border-bottom: 1px solid #eee;
+                                            .title{
+                                                display: block;
+                                                height: 30px;
+                                                font-size: 20px;
+                                                text-align: center;
+                                            }
+                                            .closex{
+                                                top: 10px;
+                                                right: 0;
+                                                color: #aaaaaa;
+                                                font-size: 20px;
+                                                &:hover{
+                                                    color: #333333;
+                                                }
+                                            }
+                                        }
+                                        .filter-body{
+                                            position: absolute;
+                                            top: 50px;
+                                            left: 200px;
+                                            bottom: 0;
+                                            right: 0;
+                                            border-left: 1px solid #eee;
+                                            .check-all{
+                                                padding: 0 10px;
+                                            }
+                                            .user-list{
+                                                position: absolute;
+                                                top: 30px;
+                                                bottom: 0;
+                                                left: 0;
+                                                right: 0;
+                                                margin: 10px;
+                                                .user-item{
+                                                    height: 40px;
+                                                    cursor: pointer;
+                                                    .cs-checkbox{
+                                                        margin: 10px 0;
+                                                    }
+                                                    .user-avatar{
+                                                        width: 30px;
+                                                        height: 30px;
+                                                        float: left;
+                                                        margin: 5px;
+                                                        img{
+                                                            width: 100%;
+                                                            height: 100%;
+                                                            border-radius: 50%;
+                                                            box-shadow: #333 0 0 2px;
+                                                        }
+                                                    }
+                                                    .user-name{
+                                                        margin-left: 65px;
+                                                        padding: 10px;
+                                                        line-height: 20px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .search-menu{
+                                        min-width: 350px;
+                                        .filter-body{
+                                            left: 0;
+                                            .user-list{
+                                                top: 0;
+                                            }
+                                        }
+                                    }
+                                }
+                                .setting-item:last-child{
+                                    border-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                    // #endregion
+                    .loading{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        z-index: 9;
+                        &:after{
+                            content: '';
+                            width: 50px;
+                            height: 50px;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background: url('http://localhost/livechat/images/loading.gif') no-repeat center;
+                            background-size: cover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.simplebar-content{
+    height: 100% !important;
+}
+.highcharts-credits{
+    display: none;
+}
+.react-datepicker{
+    font-family: "Roboto" !important;
+}
+.react-datepicker-popper{
+    z-index: 9 !important;
+}
+.react-datepicker__time-container {
+    width: auto !important;
+}
+.select-drop{
+    position: relative;
+    background: $primaryColor;
+    color: #ffffff;
+    min-height: 20px;
+    line-height: 20px;
+    padding: 0 25px 0 5px;
+    border: 0;
+    &::before{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        content: '\f0d7';
+        font-family: FontAweSome;
+        top: 0;
+        right: 0;
+        text-align: center;
+        line-height: 20px;
+    }
+    &_menu{
+        position: absolute;
+        display: none;
+        min-width: 100px;
+        list-style: none;
+        padding: 5px;
+        margin: 0;
+        background: $primaryColor;
+        z-index: 9;
+        li{
+            cursor: pointer;
+            line-height: 20px;
+            color: #ffffff;
+            &:hover{
+                color: $primaryColor;
+                background: #fff;
+            }
+        }
+    }
+    &_menu_left{
+        left: 20px;
+    }
+    &_menu_right{
+        right: 20px;
+    }
+}
+.message-image{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #000;
+    z-index: 9999;
+    img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 80%;
+        width: auto;
+        border-radius: 0;
+    }
+}
+.paginate{
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    .selected{
+        background: $primaryColor;
+        color: #ffffff;
+        a{
+            color: #ffffff;
+        }
+    }
+    .disabled{
+        border-color: #ccc;
+        color: #cccccc;
+        a{
+            color: #cccccc;
+        }
+    }
+    li{
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        border: 1px solid $primaryColor;
+        line-height: 28px;
+        border-radius: 3px;
+        margin: 5px;
+        a{
+            display: block;
+            text-decoration: none;
+        }
+    }
+}
+.select-box{
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    &.selected{
+      span{
+        border-radius: 3px 3px 0 0;
+        &:after{
+          transform: rotate(180deg);
+          transition: all .2s;
+        }
+      }
+      .select-box-menu{
+        display: block;
+      }
+    }
+    span{
+      display: block;
+      height: 30px;
+      min-width: 150px;
+      border-radius: 3px;
+      padding: 5px 20px;
+      padding-right: 30px;
+      line-height: 20px;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: #aaa 0 0 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      &:after{
+        content: '\f0d7';
+        font-family: FontAweSome;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: 0;
+        right: 0;
+        text-align: center;
+        line-height: 30px;
+      }
+    }
+    &-menu{
+      display: none;
+      position: absolute;
+      min-width: 100%;
+      padding: 0;
+      margin: 0;
+      top: 30px;
+      list-style: none;
+      cursor: pointer;
+      box-shadow: #aaa 0 4px 4px;
+      background: #ffffff;
+      border-radius: 0 0 3px 3px;
+      z-index: 9;
+      li{
+        min-height: 30px;
+        padding: 5px 10px;
+        border-top: 1px solid #ddd;
+        &:hover{
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+.tab-control{
+    .tab-head{
+        display: flex;
+        height: 35px;
+        cursor: pointer;
+        span{
+            flex-grow: 1;
+            height: 34px;
+            text-align: center;
+            line-height: 34px;
+            &.active{
+                border-bottom: 2px solid $primaryColor;
+            }
+        }
+        border-bottom: 1px solid #ddd;
+    }
+    .tab-body{
+        &-container{
+            display: none;
+            &.active{
+                display: block;
+            }
+        }
+    }
+}
+
+.over{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9;
+}
+.text-ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.cs-checkbox{
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    height: 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 5px auto;
+    input:checked ~ &_check {
+        border: 0;
+        background: #13ce66;
+        display: block !important;
+        &:after{
+            display: block;
+        }
+    }
+    & > input{
+        position: absolute;
+        width: 20px;
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 9;
+    }
+    &_text{
+        display: block;
+    }
+    &_check{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 20px;
+        background-color: #fff;
+        border: 1px solid #cccccc;
+        border-radius: 3px;
+        z-index: 8;
+        &:after{
+            display: none;
+            position: absolute;
+            color: #ffffff;
+            font-size: 13px;
+            width: 100%;
+            top: 0;
+            left: 0;
+            content: '\f00c';
+            font-family: FontAweSome;
+            text-align: center;
+            line-height: 20px;
+        }
+    }
+}
+.cs-checkbox.chk-sm{
+    padding-left: 20px;
+    height: 16px;
+    margin: 2px 0 2px 0;
+    .cs-checkbox_check{
+        width: 16px;
+        &:after{
+            line-height: 15px;
+            font-size: 8px;
+        }
+    }
+    input{
+        width: 16px;
+    }
+}
+.cs-checkbox.chk-disabled{
+    &:hover{
+        .cs-checkbox_check{
+            display: block;
+        }
+    }
+    .cs-checkbox_check{
+        display: none;
+    }
+}
+.cs-radio{
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 5px auto;
+    input:checked ~ &_check {
+        border-color: #13ce66;
+        &:after{
+            display: block;
+            background: #13ce66;
+        }
+    }
+    & > input{
+        position: absolute;
+        width: 20px;
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 9;
+    }
+    &_check{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 20px;
+        background-color: #fff;
+        border: 2px solid #cccccc;
+        border-radius: 50%;
+        z-index: 8;
+        &:after{
+            content: '';
+            display: none;
+            position: absolute;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            top: 3px;
+            left: 3px;
+        }
+    }
+}
+.closex{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    line-height: 30px;
+    text-align: center;
+    &:after{
+        content: '\f00d';
+        font-family: FontAweSome;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+.btn{
+    background: $primaryColor;
+    color: #ffffff;
+    border: 0;
+    border-radius: 4px;
+    &:hover{
+        background: #1397e4;
+        color: #ffffff;
+    }
+}
+.btn{
+    &-fb{
+        background: #3c5898 ;
+        color: #ffffff;
+    }
+    &-success{
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+        &:hover{
+            background-color: #31c754;
+        }
+    }
+}
+.dialog{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+.login{
+    width: 400px;
+    padding: 10px;
+    background: #ffffff;
+    box-shadow: #ccc 0 0 5px;
+    &-title{
+        font-size: 20px;
+    }
+    .page-list{
+        position: relative;
+        display: block;
+        width: 100%;
+        .page-item{
+            border-bottom: 1px solid $secondColor;
+        }
+        .page-item:last-child{
+            border: 0;
+        }
+        .page-image{
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            float: left;
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+        }
+        .page-name{
+            display: block;
+            height: 50px;
+            margin: 0 85px 0 50px;
+            line-height: 50px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .btn{
+            color: #ffffff;
+            margin: 10px 0;
+            &-connect{
+                background-color: $primaryColor;
+            }
+            &-connected{
+                background-color: #fff;
+                border: 1px solid #13ce66;
+                color: #13ce66;
+            }
+        }
+    }
+}
+footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
+    .footer{
+        height: 70px;
+        background-color: #000000;
+        color: #ffffff;
+        text-align: center;
+        line-height: 70px;
+        a{
+            color: $primaryColor;
+        }
+    }
+}
+
+@keyframes opened{
+    from{
+        bottom: 100%;
+    }
+    to{
+        bottom: 0;
+    }
+}
+@keyframes closed{
+    from{
+        bottom: 0;
+    }
+    to{
+        bottom: 100%;
+    }
+}
+@keyframes show-preview{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}

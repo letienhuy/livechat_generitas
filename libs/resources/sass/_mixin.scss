@@ -1,0 +1,46 @@
+@for $i from 1 to 5 {
+    .mg-#{$i}0{
+        margin: #{$i}0px !important;
+    }
+    .pd-#{$i}0{
+        padding: #{$i}0px !important;
+    }
+    .mg-top-#{$i}0{
+        margin-top: #{$i}0px !important;
+    }
+    .mg-bottom-#{$i}0{
+        margin-bottom: #{$i}0px !important;
+    }
+    .mg-left-#{$i}0{
+        margin-left: #{$i}0px !important;
+    }
+    .mg-right-#{$i}0{
+        margin-right: #{$i}0px !important;
+    }
+    .pd-top-#{$i}0{
+        padding-top: #{$i}0px !important;
+    }
+    .pd-bottom-#{$i}0{
+        padding-bottom: #{$i}0px !important;
+    }
+    .pd-left-#{$i}0{
+        padding-left: #{$i}0px !important;
+    }
+    .pd-right-#{$i}0{
+        padding-right: #{$i}0px !important;
+    }
+}
+button{
+    cursor: pointer;
+}
+.pull{
+    &-left{
+        float: left !important;
+    }
+    &-right{
+        float: right !important;
+    }
+}
+.clear-fix{
+    clear: both !important;
+}
